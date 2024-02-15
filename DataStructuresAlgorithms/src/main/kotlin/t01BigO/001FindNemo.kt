@@ -12,6 +12,7 @@ private fun findNemo(elements: Array<String>) { // O(n) --> Linear time
     for (element in elements) { // O(n)
         if (element == "Nemo") { // O(n)
             println("Found Nemo") // O(n)
+            return
         }
     }
     val finalTime = System.nanoTime() // O(1)
