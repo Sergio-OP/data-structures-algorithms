@@ -28,8 +28,7 @@ class Queue {
     }
 
     fun dequeue(): Queue {
-        val tempNode = first
-        first = tempNode?.nextNode
+        first = first?.nextNode
         length--
         return this
     }
