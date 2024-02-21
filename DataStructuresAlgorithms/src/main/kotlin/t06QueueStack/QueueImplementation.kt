@@ -1,88 +1,46 @@
 package t06QueueStack
 
-data class Node(
-    val value: String,
-    var nextNode: Node? = null
-)
-
-class Queue {
-    private var first: Node? = null
-    private var last: Node? = null
+class QueueImplementation {
+    private var front: Node? = null
+    private var rear: Node? = null
     var length: Int = 0
         private set(value) {
-            field = if (value < 0) 0 else value
+            field = if (value<0) 0 else value
         }
 
-    fun peek(): String? = first?.value
-
-    fun print() = println(first)
-    fun enqueue(value: String): Queue {
-        val newNode = Node(value)
-        if (length == 0)
-            first = newNode
-        else
-            last?.nextNode = newNode
-        last = newNode
-        length++
-        return this
+    fun enqueue(element: String) {
+        val tempNode = Node(value = element)
+        if (rear == null) {
+            front = tempNode
+            rear = tempNode
+            return
+        }
+        rear?.nextNode = tempNode
+        rear = tempNode
     }
 
-    fun dequeue(): Queue {
-        first = first?.nextNode
+    fun dequeue(): String? {
+        if(rear == front) {
+            front = null
+            rear = null
+            return null
+        }
+        val dataDequeued = front?.value
+        front = front?.nextNode
         length--
-        return this
+        return dataDequeued
     }
+
+    fun peek(): String? = front?.value
 }
 
 fun main() {
-    val myQueue = Queue()
-    println("Length: ${myQueue.length}")
-
-    myQueue.enqueue("Google")
-    myQueue.print()
-    println("Length: ${myQueue.length}")
-
-    myQueue.enqueue("Udemy")
-    myQueue.print()
-    println("Length: ${myQueue.length}")
-
-    myQueue.enqueue("Discord")
-    myQueue.print()
-    println("Length: ${myQueue.length}")
+    val myQueue = QueueImplementation()
+    myQueue.enqueue("Sergio")
+    myQueue.enqueue("Karen")
+    myQueue.enqueue("Monica")
+    myQueue.dequeue()
+    myQueue.dequeue()
+    myQueue.dequeue()
     println(myQueue.peek())
-
-    myQueue.dequeue()
-    myQueue.print()
-    println("Length: ${myQueue.length}")
-    println(myQueue.peek())
-
-    myQueue.dequeue()
-    myQueue.print()
-    println("Length: ${myQueue.length}")
-    println(myQueue.peek())
-
-    myQueue.dequeue()
-    myQueue.print()
-    println("Length: ${myQueue.length}")
-    println(myQueue.peek())
-
-    myQueue.dequeue()
-    myQueue.print()
-    println("Length: ${myQueue.length}")
-
-    myQueue.dequeue()
-    myQueue.print()
-    println("Length: ${myQueue.length}")
-
-    myQueue.enqueue("Google")
-    myQueue.print()
-    println("Length: ${myQueue.length}")
-
-    myQueue.enqueue("Udemy")
-    myQueue.print()
-    println("Length: ${myQueue.length}")
-
-    myQueue.enqueue("Discord")
-    myQueue.print()
-    println("Length: ${myQueue.length}")
 }
