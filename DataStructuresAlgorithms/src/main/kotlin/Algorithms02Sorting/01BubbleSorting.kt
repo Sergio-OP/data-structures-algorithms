@@ -1,6 +1,6 @@
 package Algorithms02Sorting
 
-private fun bubbleSort(array: Array<Int>): Array<Int> { // O(n^2)
+private fun bubbleSort(array: Array<Int>): Array<Int> { // Time complexity O(n^2) & Space complexity O(1)
     val length = array.size
     for (i in 0..<(length-1)) {
         for (j in 0..<(length - 1 - i)) {
