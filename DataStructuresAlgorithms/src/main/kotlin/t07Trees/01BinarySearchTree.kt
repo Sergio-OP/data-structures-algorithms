@@ -83,6 +83,19 @@ class BinarySearchTree {
         )
 
     }
+
+    fun deepFirstSearchInOrder() = dfsInOrder(root!!, mutableListOf())
+}
+
+fun dfsInOrder(node: Node, list: MutableList<Int>): MutableList<Int> {
+    if(node.left != null) {
+        dfsInOrder(node.left!!, list)
+    }
+    list.add(node.value)
+    if(node.right != null) {
+        dfsInOrder(node.right!!, list)
+    }
+    return list
 }
 
 
@@ -109,4 +122,7 @@ fun main() {
             mutableListOf(myBinarySearchTree.root!!), mutableListOf()
         )
     )
+    println()
+    println("Deep First Search DFS recursive IN ORDER implementation: ")
+    println(myBinarySearchTree.deepFirstSearchInOrder())
 }
