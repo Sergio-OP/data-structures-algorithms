@@ -2,7 +2,7 @@ package t07Trees
 
 
 class BinarySearchTree {
-    private var root: Node? = null
+    var root: Node? = null
 
     fun insert(value: Int) {
         val newNode = Node(value)
@@ -63,6 +63,26 @@ class BinarySearchTree {
 
         return result.toIntArray()
     }
+
+    fun breadthBinarySearchRecursive(queue: MutableList<Node>, list: MutableList<Int>): MutableList<Int> {
+        if (queue.isEmpty())
+            return list
+
+        val currentNode = queue.removeFirst()
+        list.add(currentNode.value)
+
+        if (currentNode.left != null)
+            queue.add(currentNode.left!!)
+
+        if (currentNode.right != null)
+            queue.add(currentNode.right!!)
+
+        return breadthBinarySearchRecursive(
+            queue = queue,
+            list = list
+        )
+
+    }
 }
 
 
@@ -80,5 +100,13 @@ fun main() {
     node = myBinarySearchTree.lookup(20)
     node = myBinarySearchTree.lookup(123)
 
+    println("Breadth First Search BFS iterative implementation: ")
     println(myBinarySearchTree.breadthBinarySearch().contentToString())
+    println()
+    println("Breadth First Search BFS recursive implementation: ")
+    println(myBinarySearchTree
+        .breadthBinarySearchRecursive(
+            mutableListOf(myBinarySearchTree.root!!), mutableListOf()
+        )
+    )
 }
