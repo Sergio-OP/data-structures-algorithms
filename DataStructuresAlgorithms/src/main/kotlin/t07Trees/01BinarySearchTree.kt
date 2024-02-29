@@ -1,5 +1,6 @@
 package t07Trees
 
+
 class BinarySearchTree {
     private var root: Node? = null
 
@@ -40,6 +41,28 @@ class BinarySearchTree {
             }
         }
     }
+
+    fun breadthBinarySearch(): IntArray? {
+        if (root == null) return null
+        var currentNode = root as Node
+        val result: MutableList<Int> = mutableListOf()
+        val queue: MutableList<Node> = mutableListOf()
+
+        queue.add(currentNode)
+
+        while (queue.isNotEmpty()) {
+            currentNode = queue.removeFirst()
+            result.add(currentNode.value)
+
+            if (currentNode.left != null)
+                queue.add(currentNode.left!!)
+
+            if (currentNode.right != null)
+                queue.add(currentNode.right!!)
+        }
+
+        return result.toIntArray()
+    }
 }
 
 
@@ -56,4 +79,6 @@ fun main() {
     node = myBinarySearchTree.lookup(15)
     node = myBinarySearchTree.lookup(20)
     node = myBinarySearchTree.lookup(123)
+
+    println(myBinarySearchTree.breadthBinarySearch().contentToString())
 }
