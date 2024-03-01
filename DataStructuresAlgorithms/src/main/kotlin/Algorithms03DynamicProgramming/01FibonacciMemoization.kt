@@ -3,7 +3,7 @@ package Algorithms03DynamicProgramming
 var counter = 0
 var dynamicCounter = 0
 
-val cache: MutableMap<Int, Int> = mutableMapOf()
+private val cache: MutableMap<Int, Int> = mutableMapOf()
 
 fun fibonacci(n: Int): Int {
     counter++
